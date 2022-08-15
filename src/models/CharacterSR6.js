@@ -2,11 +2,11 @@
  * Model for SR6 character data
  */
 
-import { skillAttributes, skillLevels } from './CharacterConstantsSR6.js';
+import { skillAttributes } from './CharacterConstantsSR6.js';
 import Weapon from './Weapon.js';
 import Character from './Character.js';
 
-export default class Character5e extends Character {
+export default class CharacterSR6 extends Character {
     /**
      * Property notes...
      * @prop {String} key Unique (in one instance of the app) id for the character. 7 Random letters/numbers.
@@ -65,7 +65,7 @@ export default class Character5e extends Character {
         weapons = [],
         appearance = '',
         equipment = [],
-        Nuyen = '',
+        nuyen = '',
         positive_qualities = [],
         negative_qualities = [],
         notes = '',
@@ -87,36 +87,21 @@ export default class Character5e extends Character {
             key_prev,
             version
         });
-        this.charclass = charclass;
-        this.race = race;
-        this.background = background;
-        this.alignment = alignment;
-        // use underscore so we can use getter/setters on level itself.
-        this._level = level;
-        this.experience = experience;
-        this.inspiration = inspiration;
-        this.armor_class = armor_class;
-        this.speed = speed;
-        this.hp_cur = hp_cur;
-        this.hp_max = hp_max;
-        this.hd_cur = hd_cur;
-        this.hd_max = hd_max;
-        this.deathSave = deathSave;
-        this.class_points = class_points;
+        this.charname = charname;
+        this.metatype = metatype;
+        this.current_karma = current_karma;
+        this.bod = bod;
+        this.agi = agi;
         this.str = str;
-        this.dex = dex;
-        this.con = con;
-        this.intel = intel;
-        this.wis = wis;
+        this.rea = rea;
+        this.will = will;
+        this.log = log;
+        this.intui = intui;
         this.cha = cha;
-        this.saves = saves;
+        this.edge = edge;
+        this.mag = mag;
+        this.res = res;
         this.skills = skills;
-        // @version < 2.2.0 Backwards compatibile convert sleight_of_Hand to sleight_of_hand
-        if (typeof this.skills.sleight_of_Hand !== 'undefined') {
-            const sleight = this.skills.sleight_of_Hand;
-            delete this.skills.sleight_of_Hand;
-            this.skills.sleight_of_hand = sleight;
-        }
 
         this.weapons = [];
         weapons.forEach((item) => {
@@ -142,39 +127,28 @@ export default class Character5e extends Character {
             this.weapons.push(new Weapon(item));
         });
 
-        this.proficiencies_other = proficiencies_other;
-        this.languages = languages;
-        this.traits = traits;
-        this.ideals = ideals;
-        this.bonds = bonds;
-        this.flaws = flaws;
+        this.knowledge_skills = knowledge_skills;
+        this.positive_qualities = positive_qualities;
+        this.negative_qualities = negative_qualities;
         this.appearance = appearance;
         this.equipment = equipment;
-        this.cp = cp;
-        this.sp = sp;
-        this.gp = gp;
-        this.pp = pp;
-        this.features = features;
+        this.nuyen = nuyen;
         this.notes = notes;
         this.notes_adv = this._convertNotes(notes_adv);
         this.notes_cam = this._convertNotes(notes_cam);
-        this.npcs = this._convertNotes(npcs);
-        this.factions = this._convertNotes(factions);
+        this.contacts = this._convertNotes(contacts);
         this.partymembers = this._convertNotes(partymembers);
-        this.spell_ability = spell_ability;
-        this.spell_save = spell_save;
-        this.spell_attack = spell_attack;
-        this.spell_slots = spell_slots;
-        this.spell_slots_cur = spell_slots_cur;
+        this.magic_tradition = magic_tradition;
+        this.magic_attribute = magic_attribute;
         this.spells = spells;
 
         this.emitter = null;
     }
     get className () {
-        return 'Character5e';
+        return 'CharacterSR6';
     }
     get ruleset () {
-        return '5e';
+        return 'SR6';
     }
     /**
      * Level getter.

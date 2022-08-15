@@ -5,11 +5,13 @@
 import Character from '../models/Character.js';
 import Character5e from '../models/Character5e.js';
 import CharacterVagabonds from '../models/CharacterVagabonds.js';
+import CharacterSR6 from '../models/CharacterSR6.js'
 import Storage from './Storage.js';
 import Database from './Database.js';
 import { isAuthed } from './AuthService.js';
 import Character5eSheet from '../views/Character5eSheet.js';
 import CharacterVagabondsSheet from '../views/CharacterVagabondsSheet.js';
+import CharacterSR6Sheet from '../views/CharacterSR6Sheet.js';
 import SheetView from '../views/SheetView.js';
 import { version } from '../../package.json';
 
@@ -66,7 +68,8 @@ const generateCharacterKey = function () {
 const getGameOptions = function () {
     return [
         'Character5e',
-        'CharacterVagabonds'
+        'CharacterVagabonds',
+        'CharacterSR6'
     ];
 };
 
@@ -86,6 +89,8 @@ const characterFactory = function (type, obj) {
             return new Character5e(obj);
         case 'CharacterVagabonds':
             return new CharacterVagabonds(obj);
+        case 'CharacterSR6':
+            return new CharacterSR6(obj);
         default:
             return new Character(obj);
     }
@@ -298,6 +303,9 @@ const getSheetView = function (character, emitter) {
             break;
         case 'CharacterVagabonds':
             view = new CharacterVagabondsSheet({ emitter });
+            break;
+        case 'CharacterSR6':
+            view = new CharacterSR6Sheet({ emitter });
             break;
         default:
             view = new SheetView({ emitter });
