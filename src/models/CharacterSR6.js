@@ -1,8 +1,8 @@
 /**
- * Model for 5e character data
+ * Model for SR6 character data
  */
 
-import { skillAttributes, skillLevels } from './CharacterConstants5e.js';
+import { skillAttributes, skillLevels } from './CharacterConstantsSR6.js';
 import Weapon from './Weapon.js';
 import Character from './Character.js';
 
@@ -27,41 +27,20 @@ export default class Character5e extends Character {
     constructor ({
         key = '',
         charname = '',
-        charclass = '',
-        race = '',
-        background = '',
-        alignment = '',
-        level = 1,
-        experience = 0,
-        inspiration = '',
-        armor_class = '',
-        speed = 30,
-        hp_cur = '',
-        hp_max = '',
-        hd_cur = '',
-        hd_max = '',
-        deathSave = {
-            success: 0,
-            fail: 0
-        },
-        class_points = {
-            cur: 0,
-            max: 0
-        },
-        str = 10,
-        dex = 10,
-        con = 10,
-        intel = 10,
-        wis = 10,
-        cha = 10,
-        saves = {
-            str: 0,
-            dex: 0,
-            con: 0,
-            intel: 0,
-            wis: 0,
-            cha: 0
-        },
+        metatype = '',
+        current_karma = 0,
+        total_karma = 0,
+        body = 1,
+        agility = 1,
+        strength = 1,
+        reaction = 1,
+        willpower = 1,
+        logic = 1,
+        intuition = 1,
+        charisma = 1,
+        edge = 1,
+        magic = 0,
+        resonance = 0,
         skills = {
             acrobatics: 0,
             animal_handling: 0,
